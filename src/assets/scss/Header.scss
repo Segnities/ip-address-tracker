@@ -9,7 +9,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     background-image: url('../img/pattern-bg-mobile.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -38,6 +38,7 @@ h1 {
         padding: 0 0 0 20px;
         font-weight: 400;
         color: $dark-gray;
+        border: none;
 
         &:focus,
         &:focus-visible {
@@ -55,7 +56,8 @@ h1 {
         border-bottom-right-radius: 16px;
         border: none;
 
-        :focus, :focus-visible {
+        :focus,
+        :focus-visible {
             outline: none;
         }
     }
@@ -65,8 +67,9 @@ h1 {
     header {
         background-image: url('../img/pattern-bg-desktop.png');
     }
+
     .input-group {
-         width: 40%;
+        width: 40%;
     }
 
 }

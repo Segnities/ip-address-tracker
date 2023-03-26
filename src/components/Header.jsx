@@ -1,11 +1,11 @@
 
-import { useState } from "react";
 import Arrow from "../assets/img/icon-arrow.svg"
 
 import "../assets/scss/Header.scss";
 
-function Header(props) {
+const Header = (props) => {
     const {ip, setIp} = props;
+
     return (
         <header data-testid='header-id'>
             <h1>IP Address Tracker</h1>

@@ -1,16 +1,16 @@
 import "../assets/scss/DataPanel.scss";
 
 function DataPanel(props) {
-    const {geo_data} = props;
+    const {ip_geo_data} = props;
     return (
         <div className="data-container">
             <section className="ip-location">
                 <h4>Ip address</h4>
-                <p className="data">{geo_data.ip}</p>
+                <p className="data">{ip_geo_data.ip}</p>
             </section>
             <section className="location">
                 <h4>Location</h4>
-                <p className="data">{geo_data.city.name}, {geo_data.country.iso_code}, {geo_data.country.geoname_id}</p>
+                <p className="data">{ip_geo_data.city.name}, {ip_geo_data.country.iso_code}, {ip_geo_data.country.geoname_id}</p>
             </section>
             <section className="timezone">
                 <h4>Timezone</h4>

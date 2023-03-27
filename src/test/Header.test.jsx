@@ -22,5 +22,6 @@ describe('Header component test', ()=> {
         const expectedText = /Search of any IP address or domain/i;
 
         expect(screen.queryByPlaceholderText(expectedText)).toBeInTheDocument();
-    })
+    });
+
 })

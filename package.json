@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "test": "vitest",
+    "vitest-ui": "vitest --ui",
     "coverage": "vitest run --coverage",
     "preview": "vite preview"
   },
@@ -26,6 +27,7 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
+    "@vitest/ui": "^0.29.7",
     "jsdom": "^21.1.1",
     "sass": "^1.59.3",
     "vitest": "^0.29.7"

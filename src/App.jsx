@@ -11,18 +11,17 @@ import { fetchUserIp } from './API/geoipify';
 
 const App = () => {
   const [ip, setIp] = useState('');
-  const { data, error, isFetching } = useQuery('getUserIp', fetchUserIp);
+  const { data, error, isFetching } = useQuery('getUserIp', fetchUserIp); 
 
   if (isFetching) {
     return <span>Loading...</span>
   }
-  console.log(data)
 
   return (
-    <div className="App">
+    <div className="App" data-testid='appContainer'>
       <Header ip={ip} setIp={setIp} />
-      <DataPanel geo_data={data}/>
-      <Leaflet geo_data={data} />
+      <DataPanel ip_geo_data={data}/>
+      <Leaflet ip_geo_data={data} />
     </div>
   )
 }

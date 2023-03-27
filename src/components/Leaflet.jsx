@@ -5,12 +5,12 @@ import '../assets/scss/Leaflet.scss'
 
 
 const Leaflet = (props) => {
-    const {ip_geo_data} = props;
-    const {location} = ip_geo_data;
+    const { ip_geo_data } = props;
+    const { location } = ip_geo_data;
 
     return (
         <div className='map-container'>
-            <MapContainer center={[location.latitude, location.longitude]} zoom={defaultZoom} scrollWheelZoom={false} style={{ height: "100%" }}>
+            <MapContainer center={[location.latitude, location.longitude]} zoom={13} scrollWheelZoom={false} style={{ height: "100%" }}>
                 <Marker position={[location.latitude, location.longitude]}>
                     <Popup>Location of ip</Popup>
                 </Marker>

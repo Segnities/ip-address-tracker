@@ -1,7 +1,18 @@
+import { useQuery } from "react-query";
+import { fetchGeocode } from "../API/geoipify";
 import "../assets/scss/DataPanel.scss";
 
 function DataPanel(props) {
-    const {ip_geo_data} = props;
+    const { ip_geo_data } = props;
+
+    const { data, isFetching } = useQuery('geocodeData', () => fetchGeocode(ip_geo_data.city.name));
+
+    console.log(data);
+
+    if (isFetching) {
+        return <span>Loading...</span>
+    }
+
     return (
         <div className="data-container">
             <section className="ip-location">

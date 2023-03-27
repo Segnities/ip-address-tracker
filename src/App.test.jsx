@@ -5,7 +5,6 @@ import { screen, waitFor } from "@testing-library/react";
 import App from "./App";
 import { renderWithQueryClientProvider } from "./utils-for-tests";
 
-
 describe('Testing App component', () => {
 
     test('App Loader', () => {

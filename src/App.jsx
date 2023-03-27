@@ -1,27 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from './components/Header';
 import Leaflet from "./components/Leaflet";
 import DataPanel from "./components/DataPanel";
 
-import './App.scss';
 import { useQuery } from 'react-query';
-import { fetchUserIp } from './API/geoipify';
+import { fetchIp, fetchGeocode } from './API/geoipify';
+
+import './App.scss';
 
 
 const App = () => {
   const [ip, setIp] = useState('');
-  const { data, error, isFetching } = useQuery('getUserIp', fetchUserIp); 
+  const { data: ipData, error, isFetching: isIpDataFething } = useQuery('ipQuery', () => fetchIp(ip));
 
-  if (isFetching) {
+  if (isIpDataFething) {
     return <span>Loading...</span>
   }
 
   return (
     <div className="App" data-testid='appContainer'>
       <Header ip={ip} setIp={setIp} />
-      <DataPanel ip_geo_data={data}/>
-      <Leaflet ip_geo_data={data} />
+      <DataPanel ip_geo_data={ipData} />
+      <Leaflet ip_geo_data={ipData} />
     </div>
   )
 }

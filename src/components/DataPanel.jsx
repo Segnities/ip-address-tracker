@@ -5,25 +5,36 @@ import "../assets/scss/DataPanel.scss";
 import { getUTCTime } from "../utils/utc-time";
 
 function DataPanel(props) {
-    const { ip_geo_data } = props;
+    const { geocode_data, ip_geo_data } = props;
 
-    const { data: geocodeData, isFetching } = useQuery('geocodeData', () => fetchGeocode(ip_geo_data.city.name));
+    const { geocodeData, isGeocodeFetching, geocodeStatus } = geocode_data;
 
     const [timezoneName, setTimezoneName] = useState('');
     const [utcTime, setUtcTime] = useState('');
 
     useEffect(() => {
         setTimezoneName(geocodeData?.features[0]?.properties?.timezone?.name)
-    }, [!isFetching]);
+    }, [!isGeocodeFetching]);
 
     useEffect(() => {
         const totalTime = getUTCTime(geocodeData?.features[0]?.properties?.timezone?.name);
-
         setUtcTime(totalTime);
+
+        const interval = setInterval(() => {
+            setUtcTime(totalTime);
+        }, 1000);
+
+        return () => {
+            clearInterval(interval);
+        }
 
     }, [timezoneName]);
 
-    if (isFetching) {
+    if (isGeocodeFetching) {
+        return <span>Refreshing...</span>
+    }
+
+    if (geocodeStatus === 'loading') {
         return <span>Loading...</span>
     }
 
@@ -40,7 +51,7 @@ function DataPanel(props) {
             <section className="timezone">
                 <h4>Timezone</h4>
                 <p className="data">
-                   UTC - {utcTime}
+                    UTC - {utcTime}
                 </p>
             </section>
             <section className="isp">

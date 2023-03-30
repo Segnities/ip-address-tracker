@@ -6,6 +6,7 @@ async function fetchIp(ipLocation) {
 
 async function fetchGeocode(cityName = '') {
     return (await axios.get(`https://api.geoapify.com/v1/geocode/search?text=${cityName}&apiKey=9fb38933b1d54fc6b84d1dd770d0bcb2`)).data;
+
 }
 
 

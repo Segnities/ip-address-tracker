@@ -12,15 +12,21 @@ import './App.scss';
 
 const App = () => {
   const [ip, setIp] = useState('');
-  const { data: ipData, status, error, isFetching: isIpDataFething } = useQuery(['ipQuery', ip], () => fetchIp(ip));
+  const [fetchByIp, setFetchByIp] = useState('');
 
-  const { data:geocodeData, isFetching:isGeocodeFetching, status:geocodeStatus } = useQuery(['geocodeQuery', ipData?.city?.name], () => fetchGeocode(ipData?.city?.name), {
+  const { data: ipData, error: ipError, status: ipStatus, isFetching: isIpDataFething, refetch: refetchIpQuery } = useQuery(['ipQuery', fetchByIp], () => fetchIp(ip));
+
+  const { data: geocodeData, isFetching: isGeocodeFetching, status: geocodeStatus, isError } = useQuery(['geocodeQuery', ipData?.city?.name], () => fetchGeocode(ipData?.city?.name), {
     enabled: !!ipData?.city?.name
   })
 
 
-  if (status === 'loading') {
+  if (ipStatus === 'loading' || geocodeStatus === 'loading') {
     return <span>Loading...</span>
+  }
+
+  if (ipError) {
+    return <h1>Error</h1>
   }
 
   if (isIpDataFething) {
@@ -29,8 +35,8 @@ const App = () => {
 
   return (
     <div className="App" data-testid='appContainer'>
-      <Header ip={ip} setIp={setIp} />
-      <DataPanel ip_geo_data={ipData} geocode_data={{geocodeData, isGeocodeFetching, geocodeStatus}} />
+      <Header ip={ip} setIp={setIp} setFetchByIp={setFetchByIp} refetchIpQuery={refetchIpQuery} />
+      <DataPanel ip_geo_data={ipData} geocode_data={{ geocodeData, isGeocodeFetching, geocodeStatus }} />
       <Leaflet ip_geo_data={ipData} />
     </div>
   )

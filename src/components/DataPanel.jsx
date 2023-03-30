@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchGeocode } from "../API/geoipify";
-import "../assets/scss/DataPanel.scss";
 import { getUTCTime } from "../utils/utc-time";
+
+import "../assets/scss/DataPanel.scss";
 
 function DataPanel(props) {
     const { geocode_data, ip_geo_data } = props;
@@ -46,7 +47,7 @@ function DataPanel(props) {
             </section>
             <section className="location">
                 <h4>Location</h4>
-                <p className="data">{ip_geo_data?.city?.name}, {ip_geo_data.country.iso_code}, {ip_geo_data?.country?.geoname_id}</p>
+                <p className="data">{ip_geo_data?.city?.name}, {ip_geo_data?.country?.iso_code}, {ip_geo_data?.country?.geoname_id}</p>
             </section>
             <section className="timezone">
                 <h4>Timezone</h4>

@@ -8,7 +8,13 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import './index.scss'
 
 
-const client = new QueryClient();
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
+    }
+  }
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

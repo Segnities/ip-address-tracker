@@ -8,6 +8,7 @@ import { useQuery } from 'react-query';
 import { fetchGeocode, fetchIp } from './API/geoipify';
 
 import './App.scss';
+import SomeError from './components/SomeError';
 
 
 const App = () => {
@@ -20,13 +21,15 @@ const App = () => {
     enabled: !!ipData?.city?.name
   })
 
-
   if (ipStatus === 'loading' || geocodeStatus === 'loading') {
     return <span>Loading...</span>
   }
 
-  if (ipError) {
-    return <h1>Error</h1>
+  if (isError) {
+    return <SomeError
+      code={ipError.code}
+      message={ipError.message}
+    />
   }
 
   if (isIpDataFething) {

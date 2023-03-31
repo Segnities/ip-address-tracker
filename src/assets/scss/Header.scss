@@ -57,12 +57,18 @@ h1 {
         border: none;
         z-index: 50;
 
-        :focus,
-        :focus-visible {
+        &:focus,
+        &:focus-visible {
             outline: none;
         }
+
+        &:disabled {
+            background-color: $dark-gray;
+        }
+
     }
 }
+
 
 @media screen and (min-width: 1024px) {
     header {

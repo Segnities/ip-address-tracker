@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { fetchGeocode } from "../API/geoipify";
 import { getUTCTime } from "../utils/utc-time";
 
 import "../assets/scss/DataPanel.scss";
@@ -57,7 +55,7 @@ function DataPanel(props) {
             </section>
             <section className="isp">
                 <h4>Isp</h4>
-                <p className="data"></p>
+                <p className="data">- - -</p>
             </section>
         </div>
     )

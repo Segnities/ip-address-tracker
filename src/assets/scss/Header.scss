@@ -4,8 +4,8 @@
 header {
     width: 100%;
     min-height: 280px;
+    padding: 25px 0 20px 15px;
     height: 40vh;
-    padding: 30px 10px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +13,19 @@ header {
     background-image: url('../img/pattern-bg-mobile.png');
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.ip-form {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+p.ipv4-error {
+    color: $very-dark-gray;
+    font-size: 12px;
 }
 
 h1 {
@@ -73,6 +86,7 @@ h1 {
 @media screen and (min-width: 1024px) {
     header {
         background-image: url('../img/pattern-bg-desktop.png');
+        padding: 30px 10px 0 0;
     }
 
     .input-group {

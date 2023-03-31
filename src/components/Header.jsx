@@ -12,7 +12,7 @@ const Header = (props) => {
     });
 
     const handleSendIpAddress = () => {
-        if (ipv4RegexError.isValid == true && trackIp.length > 0) {
+        if (ipv4RegexError.isValid == true && ip.length > 0) {
             setFetchByIp(ip)
             refetchIpQuery();
         }
@@ -20,9 +20,9 @@ const Header = (props) => {
 
     useEffect(() => {
         const ipv4Regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
-            if (ipv4Regex.test(ip) === false) {
+        if (ipv4Regex.test(ip) === false) {
             setIpv4RegexError({
-                message: 'Invalid IP mask',
+                message: 'Invalid IP V4 mask',
                 isValid: false
             });
         } else {
@@ -36,22 +36,23 @@ const Header = (props) => {
     return (
         <header data-testid='header-id'>
             <h1>IP Address Tracker</h1>
-            <div className="input-group">
-                <input
-                    type="text"
-                    value={ip}
-                    onChange={(e) => {
-                        setIp(e.target.value)
-                    }}
-                    placeholder='Search of any IP address or domain'
-                />
-                <button onClick={handleSendIpAddress} disabled={!ipv4RegexError.isValid}>
-                    <img src={Arrow} />
-                </button>
-            </div>
-            {
-                ipv4RegexError.isValid == false && (<p>{ipv4RegexError.message}</p>)
-            }
+            <form onSubmit={(e) => e.preventDefault()} className='ip-form'>
+                <div className="input-group">
+                    <input
+                        type="text"
+                        value={ip}
+                        onChange={(e) => {
+                            setIp(e.target.value)
+                        }}
+                        placeholder='Search of any IP address or domain'
+                    />
+                    <button title={ipv4RegexError.message} onClick={handleSendIpAddress} disabled={!ipv4RegexError.isValid}>
+                        <img src={Arrow} />
+                    </button>
+                </div>
+
+            </form>
+
         </header>
     )
 }

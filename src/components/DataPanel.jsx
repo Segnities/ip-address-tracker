@@ -11,8 +11,6 @@ function DataPanel(props) {
     const [timezoneName, setTimezoneName] = useState('');
     const [utcTime, setUtcTime] = useState('');
 
-    console.log(ip_geo_data);
-
     useEffect(() => {
         setTimezoneName(geocodeData?.features[0]?.properties?.timezone?.name)
     }, [!isGeocodeFetching]);
@@ -57,7 +55,7 @@ function DataPanel(props) {
             </section>
             <section className="isp">
                 <h4>Isp</h4>
-                <p className="data">{ip_geo_data?.isp}</p>
+                <p className="data">- - -</p>
             </section>
         </div>
     )

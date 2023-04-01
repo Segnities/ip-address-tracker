@@ -7,8 +7,10 @@ import DataPanel from "./components/DataPanel";
 import { useQuery } from 'react-query';
 import { fetchGeocode, fetchIp } from './API/geoipify';
 
-import './App.scss';
 import SomeError from './components/SomeError';
+import Loader from "./components/UI/Loader";
+
+import './App.scss';
 
 
 const App = () => {
@@ -22,7 +24,7 @@ const App = () => {
   })
 
   if (ipStatus === 'loading' || geocodeStatus === 'loading') {
-    return <span>Loading...</span>
+    return <Loader title='Data is loading...' />
   }
 
   if (isError) {
@@ -33,7 +35,7 @@ const App = () => {
   }
 
   if (isIpDataFething) {
-    return <span>Refreshing...</span>
+    return <Loader title='Refreshing...' />
   }
 
   return (

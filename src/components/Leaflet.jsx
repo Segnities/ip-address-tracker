@@ -18,7 +18,7 @@ const Leaflet = (props) => {
 
     return (
         <div className='map-container'>
-            <MapContainer center={[location.latitude, location.longitude]} zoom={13} scrollWheelZoom={false} style={{ height: "100%" }}>
+            <MapContainer center={[location.latitude, location.longitude]} zoom={13} scrollWheelZoom={true} style={{ height: "100%" }}>
                 <Marker icon={MARKER_ICON} position={[location.latitude, location.longitude]}>
                     <Popup>Location of ip</Popup>
                 </Marker>
